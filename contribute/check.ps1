@@ -217,6 +217,91 @@ if ($currentVersion) {
 Write-Host ""
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 6. Home Assistant integration scaffolding checks
+# ─────────────────────────────────────────────────────────────────────────────
+Write-Host "--- 6: Home Assistant integration checks ---" -ForegroundColor White
+
+$hacsPath = Join-Path $ROOT 'hacs.json'
+if (Test-Path $hacsPath) {
+    Write-Pass "hacs.json found"
+}
+else {
+    Write-Fail "hacs.json missing (required for HACS install)"
+}
+
+$integrationRoot = Join-Path (Join-Path $ROOT 'custom_components') 'home_battery_control'
+$requiredFiles = @(
+    'manifest.json',
+    '__init__.py',
+    'const.py',
+    'config_flow.py',
+    'services.yaml',
+    'diagnostics.py',
+    'repairs.py',
+    'frontend/panel.js'
+)
+foreach ($rel in $requiredFiles) {
+    $path = Join-Path $integrationRoot $rel
+    if (Test-Path $path) {
+        Write-Pass "integration file exists: $rel"
+    }
+    else {
+        Write-Fail "integration file missing: $rel"
+    }
+}
+
+$manifestPath = Join-Path $integrationRoot 'manifest.json'
+if (Test-Path $manifestPath) {
+    try {
+        $manifest = Get-Content $manifestPath -Raw | ConvertFrom-Json
+        if ($manifest.domain -eq 'home_battery_control') {
+            Write-Pass "manifest domain is home_battery_control"
+        }
+        else {
+            Write-Fail "manifest domain mismatch: $($manifest.domain)"
+        }
+        if ($manifest.config_flow -eq $true) {
+            Write-Pass "manifest config_flow enabled"
+        }
+        else {
+            Write-Fail "manifest config_flow must be true"
+        }
+    }
+    catch {
+        Write-Fail "manifest.json invalid JSON - $_"
+    }
+}
+
+$testsDir = Join-Path $ROOT 'tests'
+if (Test-Path $testsDir) {
+    Write-Check "Running Python unit tests"
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $python) {
+        Write-Warn "python command not found; skipping unit tests"
+    }
+    else {
+        Push-Location $ROOT
+        try {
+            $output = & python -m unittest discover -s tests -p 'test_*.py' 2>&1
+            if ($LASTEXITCODE -eq 0) {
+                Write-Pass "Python unit tests passed"
+            }
+            else {
+                Write-Fail "Python unit tests failed`n$output"
+            }
+        }
+        finally {
+            Pop-Location
+        }
+    }
+}
+else {
+    Write-Warn "tests directory not found; skipping Python unit tests"
+}
+
+Write-Host ""
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Summary
 # ─────────────────────────────────────────────────────────────────────────────
 Write-Host "=====================================================" -ForegroundColor White

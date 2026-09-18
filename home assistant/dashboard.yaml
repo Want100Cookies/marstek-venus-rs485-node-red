@@ -22,6 +22,8 @@ views:
             text_only: true
           - type: markdown
             content: >-
+              <ha-alert title="Fallback dashboard">Legacy fallback dashboard for Home Battery Control HACS integration.</ha-alert>
+
               <ha-alert title="Setup Grid Power Sensor">Configure your P1 power
               sensor</ha-alert>
 
@@ -68,16 +70,14 @@ views:
             text_only: true
           - type: markdown
             content: >-
-              <ha-alert title="Setup Node-RED"> Import and deploy <font
-              color=red>Node-RED</font> scripts.</ha-alert>
+              <ha-alert title="Setup Home Battery Control integration">Configure integration entities and open the bundled dashboard panel.</ha-alert>
             visibility:
               - condition: state
                 entity: input_boolean.house_battery_control_has_node_red
                 state_not: 'on'
           - type: markdown
             content: >-
-              <ha-alert title="Node-RED" alert-type="success">Configured and
-              script deployed</ha-alert>
+              <ha-alert title="Integration" alert-type="success">Configured and connected</ha-alert>
             visibility:
               - condition: state
                 entity: input_boolean.house_battery_control_has_node_red
@@ -1646,7 +1646,7 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Node-RED
+            heading: Integration & Help
             heading_style: title
           - type: heading
             icon: mdi:list-status

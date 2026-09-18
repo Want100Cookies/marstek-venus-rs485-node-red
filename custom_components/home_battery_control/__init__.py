@@ -3,33 +3,50 @@
 from __future__ import annotations
 
 from datetime import timedelta
+from typing import Any
 
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import Platform
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.event import async_track_time_interval
+try:
+    from homeassistant.config_entries import ConfigEntry
+    from homeassistant.const import Platform
+    from homeassistant.core import HomeAssistant
+    from homeassistant.helpers.event import async_track_time_interval
+except ModuleNotFoundError:  # pragma: no cover - allows pure unit tests without HA runtime
+    ConfigEntry = Any
+    Platform = Any
+    HomeAssistant = Any
+    async_track_time_interval = None
+
 from .const import DOMAIN
-from .coordinator import HomeBatteryCoordinator
-from .dashboard import async_register_dashboard
-from .services import async_register_services
 
-PLATFORMS: list[Platform] = [
-    Platform.SENSOR,
-    Platform.BINARY_SENSOR,
-    Platform.NUMBER,
-    Platform.SELECT,
-    Platform.SWITCH,
-    Platform.TIME,
-]
+if async_track_time_interval is None:
+    PLATFORMS: list = []
+else:
+    PLATFORMS: list[Platform] = [
+        Platform.SENSOR,
+        Platform.BINARY_SENSOR,
+        Platform.NUMBER,
+        Platform.SELECT,
+        Platform.SWITCH,
+        Platform.TIME,
+    ]
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
+    if async_track_time_interval is None:
+        return False
+    from .services import async_register_services
+
     hass.data.setdefault(DOMAIN, {})
     await async_register_services(hass)
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    if async_track_time_interval is None:
+        return False
+    from .coordinator import HomeBatteryCoordinator
+    from .dashboard import async_register_dashboard
+
     coordinator = HomeBatteryCoordinator(hass, entry)
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = {"coordinator": coordinator, "entry": entry}
     hass.http.register_static_path(f"/{DOMAIN}", hass.config.path(f"custom_components/{DOMAIN}/frontend"), cache_headers=False)

@@ -7,6 +7,7 @@
   "codeowners": ["@Want100Cookies"],
   "config_flow": true,
   "iot_class": "local_polling",
+  "homeassistant": "2024.8.0",
   "requirements": [],
   "loggers": ["custom_components.home_battery_control"]
 }

@@ -32,6 +32,7 @@ Validates the project for consistency. Run this before any commit or release.
 | 3 | All versioned flow labels and `dashboard.yaml` match the version in `01 start-flow.json` | FAIL (exit 1) |
 | 4 | Every individual flow tab label exists in `all-flows-in-one-file.json` | FAIL (exit 1) |
 | 5 | `RELEASE_NOTES.md` has a `## <version>` section for the current version | WARN only |
+| 6 | HACS/integration scaffold files exist, manifest fields are valid, and Python unit tests pass | FAIL (tests), WARN (python unavailable) |
 
 **Exit codes:** `0` = all checks passed, `1` = one or more failures.
 
