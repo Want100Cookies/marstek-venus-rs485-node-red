@@ -1,0 +1,37 @@
+{
+  "title": "Home Battery Control",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Start setup",
+        "description": "Create integration and keep control disabled until safety checks are done."
+      },
+      "grid": {
+        "title": "Grid power sensor",
+        "description": "Pick your P1/grid sensor. Positive values should mean import."
+      },
+      "batteries": {
+        "title": "Battery mapping",
+        "description": "Set number of batteries and optionally use Marstek presets."
+      },
+      "finish": {
+        "title": "Initial strategy",
+        "description": "Choose initial strategy and dashboard preference."
+      }
+    }
+  },
+  "issues": {
+    "missing_grid_sensor": {
+      "title": "Grid power sensor unavailable"
+    },
+    "invalid_battery_mapping": {
+      "title": "Battery mapping invalid"
+    },
+    "dynamic_provider_missing": {
+      "title": "Dynamic provider returned no data"
+    },
+    "unsafe_full_control": {
+      "title": "Full control safety checklist incomplete"
+    }
+  }
+}

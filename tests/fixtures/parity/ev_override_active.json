@@ -1,0 +1,1 @@
+{"scenario":"ev_override_active","input":{"strategy":"dynamic","ev_is_charging":true,"ev_override_strategy":"full_stop","battery_count":2},"expected":{"selected_strategy":"full_stop","selected_sub_strategy":"full_stop","write_decision":"blocked"}}

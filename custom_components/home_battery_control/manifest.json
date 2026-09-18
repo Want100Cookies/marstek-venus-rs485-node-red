@@ -1,0 +1,12 @@
+{
+  "domain": "home_battery_control",
+  "name": "Home Battery Control",
+  "version": "0.1.0",
+  "documentation": "https://github.com/Want100Cookies/marstek-venus-rs485-node-red",
+  "issue_tracker": "https://github.com/Want100Cookies/marstek-venus-rs485-node-red/issues",
+  "codeowners": ["@Want100Cookies"],
+  "config_flow": true,
+  "iot_class": "local_polling",
+  "requirements": [],
+  "loggers": ["custom_components.home_battery_control"]
+}

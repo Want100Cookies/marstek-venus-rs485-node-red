@@ -1,0 +1,52 @@
+set_strategy:
+  name: Set strategy
+  description: Set active strategy
+  fields:
+    strategy:
+      required: true
+      selector:
+        select:
+          options:
+            - full_stop
+            - self_consumption
+            - timed
+            - dynamic
+            - charge
+            - charge_pv
+            - sell
+            - zero_import
+            - standby_peak_shave
+
+pause_control:
+  name: Pause control
+  description: Disable all writes
+
+resume_control:
+  name: Resume control
+  description: Re-enable writes
+
+emergency_stop:
+  name: Emergency stop
+  description: Disable control and set strategy to full_stop
+
+reset_pid_integral:
+  name: Reset PID integral
+  description: Reset controller integral accumulator
+
+apply_pid_preset:
+  name: Apply PID preset
+  description: Apply one of the preset PID profiles
+  fields:
+    preset:
+      required: true
+      selector:
+        select:
+          options:
+            - very_safe
+            - safe
+            - regular
+            - custom
+
+reload_mappings:
+  name: Reload mappings
+  description: Reload mapped entity telemetry and run cycle

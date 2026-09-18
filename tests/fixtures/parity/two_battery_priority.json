@@ -1,0 +1,1 @@
+{"scenario":"two_battery_priority","input":{"strategy":"self_consumption","grid_power_w":-600,"battery_count":2,"priority_mode":"manual"},"expected":{"selected_strategy":"self_consumption","selected_sub_strategy":"self_consumption","write_decision":"eligible_if_full_control"}}

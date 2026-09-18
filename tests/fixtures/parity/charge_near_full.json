@@ -1,0 +1,1 @@
+{"scenario":"charge_near_full","input":{"strategy":"charge","battery_count":2,"avg_soc":97},"expected":{"selected_strategy":"charge","selected_sub_strategy":"charge_goal_reached_follow_up","write_decision":"eligible_if_full_control"}}

@@ -1,0 +1,1 @@
+{"scenario":"six_battery_balance","input":{"strategy":"self_consumption","grid_power_w":400,"battery_count":6,"priority_mode":"auto_balance"},"expected":{"selected_strategy":"self_consumption","selected_sub_strategy":"self_consumption","write_decision":"eligible_if_full_control"}}

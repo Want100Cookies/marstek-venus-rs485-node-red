@@ -1,0 +1,1 @@
+{"scenario":"one_battery_self_consumption","input":{"strategy":"self_consumption","grid_power_w":1200,"battery_count":1},"expected":{"selected_strategy":"self_consumption","selected_sub_strategy":"self_consumption","write_decision":"eligible_if_full_control"}}

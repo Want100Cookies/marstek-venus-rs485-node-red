@@ -1,0 +1,1 @@
+{"scenario":"discharge_near_empty","input":{"strategy":"sell","battery_count":2,"avg_soc":8},"expected":{"selected_strategy":"sell","selected_sub_strategy":"sell_goal_reached_follow_up","write_decision":"eligible_if_full_control"}}

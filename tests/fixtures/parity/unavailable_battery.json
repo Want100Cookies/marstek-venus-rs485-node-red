@@ -1,0 +1,1 @@
+{"scenario":"unavailable_battery","input":{"strategy":"self_consumption","grid_power_w":300,"battery_count":2,"unavailable":1},"expected":{"selected_strategy":"self_consumption","selected_sub_strategy":"self_consumption","write_decision":"skip_unavailable"}}

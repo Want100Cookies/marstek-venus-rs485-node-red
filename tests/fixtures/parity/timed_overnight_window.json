@@ -1,0 +1,1 @@
+{"scenario":"timed_overnight_window","input":{"strategy":"timed","now":"23:30","periods":[{"name":"A","start":"22:00","end":"06:00","strategy":"sell"}]},"expected":{"selected_strategy":"timed","selected_sub_strategy":"sell","write_decision":"depends_sub_strategy"}}

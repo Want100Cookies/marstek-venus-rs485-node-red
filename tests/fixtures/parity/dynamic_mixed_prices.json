@@ -1,0 +1,1 @@
+{"scenario":"dynamic_mixed_prices","input":{"strategy":"dynamic","provider":"mixed","min_delta":0.05},"expected":{"selected_strategy":"dynamic","selected_sub_strategy":"charge_or_sell_by_mark","write_decision":"depends_sub_strategy"}}

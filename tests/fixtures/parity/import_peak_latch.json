@@ -1,0 +1,1 @@
+{"scenario":"import_peak_latch","input":{"strategy":"standby_peak_shave","grid_power_w":2300,"import_limit_w":1500,"battery_count":2},"expected":{"selected_strategy":"standby_peak_shave","selected_sub_strategy":"standby_peak_shave_import","write_decision":"eligible_if_full_control"}}
